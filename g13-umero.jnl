@@ -1,0 +1,204 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].undo()
+#* Nothing to undo.
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(imageName=
+    'osso', showImage=True)
+mdb.models['Model-1'].sketches['__profile__'].undo()
+#* Nothing to undo.
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=0.3
+    , yScale=0.3)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -50.0, -50.0), translucency=0.98, xScale=0.3, yScale=0.3)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -70.0, -80.0), translucency=0.98, xScale=0.3, yScale=0.3)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(
+    translucency=0.98, xScale=0.5, yScale=0.5)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(
+    translucency=0.98, xScale=0.45, yScale=0.45)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(
+    translucency=0.98, xScale=0.47, yScale=0.47)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(
+    translucency=0.98, xScale=0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    2.5, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -80.5, 0.0), translucency=0.98, xScale=0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -80.0, 0.0), translucency=0.98, xScale=0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -85.0, 0.0), translucency=0.98, xScale=0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -95.0, 0.0), translucency=0.98, xScale=0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -90.0, 0.0), translucency=0.98, xScale=0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -92.0, 0.0), translucency=0.98, xScale=0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -93.0, 0.0), translucency=0.98, xScale=0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -93.0, -93.0), translucency=0.98, xScale=0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -93.0, -103.0), translucency=0.98, xScale=0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(
+    translucency=0.98, xScale=0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].Spline(points=((53.75, -85.0), (
+    67.5, 13.75), (72.5, 36.25), (75.0, 61.25), (73.75, 66.25), (67.5, 72.5), (
+    10.0, 87.5), (-1.25, 82.5), (-28.75, 41.25), (-25.0, 15.0), (-17.5, 6.25), 
+    (-10.0, 2.5), (-6.25, -1.25), (-2.5, -7.5), (-1.25, -20.0), (0.0, -25.0), (
+    2.5, -57.5), (2.5, -85.0)))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(2.5, -85.0), point2=
+    (53.75, -85.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].Part(dimensionality=TWO_D_PLANAR, name='osso', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['osso'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['osso'].features['Shell planar-1'].sketch)
+mdb.models['Model-1'].parts['osso'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=mdb.models['Model-1'].parts['osso'].features['Shell planar-1'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['osso'].features['Shell planar-1'].sketch)
+mdb.models['Model-1'].parts['osso'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=mdb.models['Model-1'].parts['osso'].features['Shell planar-1'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(imageName=
+    'osso', origin=(-93.0, -103.0), showImage=True, xScale=0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.48, yScale=0.48)
+mdb.models['Model-1'].sketches['__profile__'].Spline(points=((53.75, -85.0), (
+    66.25, 12.5), (73.75, 50.0), (75.0, 60.0), (73.75, 66.25), (60.0, 77.5), (
+    26.25, 88.75), (20.0, 88.75), (-1.25, 82.5), (-23.75, 58.75), (-28.75, 
+    28.75), (-22.5, 11.25), (-18.75, 7.5), (-8.75, 2.5), (-5.0, -3.75), (-2.5, 
+    -7.5), (-1.25, -13.75), (1.25, -27.5), (2.5, -42.5), (2.5, -85.0)))
+mdb.models['Model-1'].sketches['__profile__'].Spot(point=(2.5, -85.0))
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[20], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].delete(objectList=(
+    mdb.models['Model-1'].sketches['__profile__'].constraints[22], ))
+mdb.models['Model-1'].sketches['__profile__'].delete(objectList=(
+    mdb.models['Model-1'].sketches['__profile__'].vertices[20], ))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(2.5, -85.0), point2=
+    (53.75, -85.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].Part(dimensionality=TWO_D_PLANAR, name='osso-tentativa2', 
+    type=DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['osso-tentativa2'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+del mdb.models['Model-1'].parts['osso']
+mdb.models['Model-1'].parts.changeKey(fromName='osso-tentativa2', toName=
+    'osso')
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['osso'].features['Shell planar-1'].sketch)
+mdb.models['Model-1'].parts['osso'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=mdb.models['Model-1'].parts['osso'].features['Shell planar-1'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['osso'].features['Shell planar-1'].sketch)
+mdb.models['Model-1'].parts['osso'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=mdb.models['Model-1'].parts['osso'].features['Shell planar-1'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=100.0)
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=150.0)
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=75.0)
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(imageName=
+    'osso', showImage=True)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.25, yScale=0.25)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=0.2
+    , yScale=0.2)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.23, yScale=0.23)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.24, yScale=0.24)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -103.0, 0.0), xScale=0.24, yScale=0.24)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -55.0, 0.0), xScale=0.24, yScale=0.24)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -52.0, 0.0), xScale=0.24, yScale=0.24)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -51.0, 0.0), xScale=0.24, yScale=0.24)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.242, yScale=0.242)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -50.5, 0.0), xScale=0.242, yScale=0.242)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -50.0, 0.0), xScale=0.242, yScale=0.242)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -51.5, 0.0), xScale=0.242, yScale=0.242)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    -51.5, -51.5), xScale=0.242, yScale=0.242)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.242, yScale=0.242)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.242, yScale=0.242)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.242, yScale=0.242)
+mdb.models['Model-1'].sketches['__profile__'].Spline(points=((22.5, -42.5), (
+    25.6157150268555, -12.3617925643921), (32.5, 25.0), (33.1909141540527, 
+    30.0240650177002), (32.5, 33.75), (25.2826843261719, 39.30712890625), (
+    6.25, 45.0), (-8.75, 40.0), (-16.8574085235596, 30.3257522583008), (
+    -19.1309604644775, 15.4575691223145), (-16.25, 6.25), (-13.75, 3.75), (
+    -9.70636940002441, 1.9254846572876), (-6.35475540161133, 
+    -2.99345588684082), (-5.70121383666992, -3.90949058532715), (
+    -5.57050704956055, -6.09051895141602), (-4.48126792907715, 
+    -11.7175750732422), (-3.75, -18.75), (-3.75, -42.5)))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-3.75, -42.5), 
+    point2=(22.5, -42.5))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].Part(dimensionality=TWO_D_PLANAR, name='Part-2', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-2'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+del mdb.models['Model-1'].parts['osso']
+mdb.models['Model-1'].parts.changeKey(fromName='Part-2', toName='osso')
+mdb.models['Model-1'].Material(name='osso')
+mdb.models['Model-1'].materials['osso'].Elastic(table=((17000.0, 0.3), ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='osso', name=
+    'osso-section', thickness=22.5)
+# Save by ltiaulas2019 on 2024_10_21-19.56.14; build 2022 2021_09_15-18.57.30 176069
+# Save by ltiaulas2019 on 2024_10_21-19.56.27; build 2022 2021_09_15-18.57.30 176069
+# Save by ltiaulas2019 on 2024_10_21-19.56.27; build 2022 2021_09_15-18.57.30 176069
+# Save by ltiaulas2019 on 2024_10_21-19.56.30; build 2022 2021_09_15-18.57.30 176069
