@@ -20,7 +20,7 @@ Probe values reported at nodes
       OSSO-4         403         -3.61857         -24.8145               0.         -3.61748          -24.814               0.
 
 
-  Part Instance     Node ID  Attached elements     U, Magnitude
+  Part Instance    Node ID   Attached elements     U, Magnitude
 ----------------------------------------------------------------
       OSSO-4         103             1278      2.58612E-03
       OSSO-4         103             1327      2.58612E-03
