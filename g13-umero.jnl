@@ -202,3 +202,2311 @@ mdb.models['Model-1'].HomogeneousSolidSection(material='osso', name=
 # Save by ltiaulas2019 on 2024_10_21-19.56.27; build 2022 2021_09_15-18.57.30 176069
 # Save by ltiaulas2019 on 2024_10_21-19.56.27; build 2022 2021_09_15-18.57.30 176069
 # Save by ltiaulas2019 on 2024_10_21-19.56.30; build 2022 2021_09_15-18.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].parts['osso'].Set(faces=
+    mdb.models['Model-1'].parts['osso'].faces.getSequenceFromMask(('[#1 ]', ), 
+    ), name='set-osso')
+mdb.models['Model-1'].parts['osso'].SectionAssignment(offset=0.0, offsetField=
+    '', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['osso'].sets['set-osso'], sectionName=
+    'osso-section', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=OFF, name='osso-1', part=
+    mdb.models['Model-1'].parts['osso'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=OFF, name='osso-2', part=
+    mdb.models['Model-1'].parts['osso'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=OFF, name='osso-3', part=
+    mdb.models['Model-1'].parts['osso'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=OFF, name='osso-4', part=
+    mdb.models['Model-1'].parts['osso'])
+mdb.models['Model-1'].StaticStep(name='step-1', previous='Initial')
+mdb.models['Model-1'].rootAssembly.Set(edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#1 ]', ), ), name='base-osso')
+mdb.models['Model-1'].EncastreBC(createStepName='step-1', localCsys=None, name=
+    'encastre-osso', region=
+    mdb.models['Model-1'].rootAssembly.sets['base-osso'])
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['osso'].features['Shell planar-1'].sketch)
+mdb.models['Model-1'].parts['osso'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=mdb.models['Model-1'].parts['osso'].features['Shell planar-1'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].rootAssembly.PartitionEdgeByParam(edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ), parameter=0.558717720548215)
+mdb.models['Model-1'].rootAssembly.PartitionEdgeByParam(edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ), parameter=0.956765355952075)
+mdb.models['Model-1'].rootAssembly.DatumPointByCoordinate(coords=(-6.02, 41.71, 
+    0.0))
+del mdb.models['Model-1'].rootAssembly.features['Partition edge-1']
+#* Regeneration Failed
+del mdb.models['Model-1'].rootAssembly.features['Partition edge-2']
+mdb.models['Model-1'].rootAssembly.ReferencePoint(point=(-6.02, 41.71, 0.0))
+mdb.models['Model-1'].rootAssembly.PartitionEdgeByParam(edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ), parameter=0.545271815639265)
+mdb.models['Model-1'].rootAssembly.PartitionEdgeByParam(edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#4 ]', ), ), parameter=0.0499066472294189)
+mdb.models['Model-1'].rootAssembly.features.changeKey(fromName=
+    'Partition edge-1', toName='FH2-part-right')
+mdb.models['Model-1'].rootAssembly.features.changeKey(fromName=
+    'Partition edge-2', toName='FH2-part-left')
+mdb.models['Model-1'].rootAssembly.Set(name='Set-2', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.referencePoints[14], ))
+mdb.models['Model-1'].ConcentratedForce(cf1=150.0, cf2=-259.0, createStepName=
+    'step-1', distributionType=UNIFORM, field='', localCsys=None, name='FH2', 
+    region=mdb.models['Model-1'].rootAssembly.sets['Set-2'])
+mdb.models['Model-1'].rootAssembly.Set(name='m_Set-3', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.referencePoints[14], ))
+mdb.models['Model-1'].rootAssembly.Surface(name='s_Surf-1', side1Edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#4 ]', ), ))
+mdb.models['Model-1'].Coupling(controlPoint=
+    mdb.models['Model-1'].rootAssembly.sets['m_Set-3'], couplingType=
+    DISTRIBUTING, influenceRadius=WHOLE_SURFACE, localCsys=None, name=
+    'Constraint-1', surface=
+    mdb.models['Model-1'].rootAssembly.surfaces['s_Surf-1'], u1=ON, u2=ON, ur3=
+    ON, weightingMethod=UNIFORM)
+mdb.models['Model-1'].rootAssembly.ReferencePoint(point=(29.82, 36.82, 0.0))
+mdb.models['Model-1'].rootAssembly.PartitionEdgeByParam(edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ), parameter=0.667656046785563)
+mdb.models['Model-1'].rootAssembly.PartitionEdgeByParam(edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#4 ]', ), ), parameter=0.154289746782889)
+mdb.models['Model-1'].rootAssembly.Set(name='Set-4', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.referencePoints[20], ))
+mdb.models['Model-1'].ConcentratedForce(cf1=-50.0, cf2=86.0, createStepName=
+    'step-1', distributionType=UNIFORM, field='', localCsys=None, name='Load-2'
+    , region=mdb.models['Model-1'].rootAssembly.sets['Set-4'])
+mdb.models['Model-1'].rootAssembly.Set(name='m_Set-5', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.referencePoints[20], ))
+mdb.models['Model-1'].rootAssembly.Surface(name='s_Surf-2', side1Edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#4 ]', ), ))
+mdb.models['Model-1'].Coupling(controlPoint=
+    mdb.models['Model-1'].rootAssembly.sets['m_Set-5'], couplingType=
+    DISTRIBUTING, influenceRadius=WHOLE_SURFACE, localCsys=None, name=
+    'Constraint-2', surface=
+    mdb.models['Model-1'].rootAssembly.surfaces['s_Surf-2'], u1=ON, u2=ON, ur3=
+    ON, weightingMethod=UNIFORM)
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=10.0)
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad10', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, resultsFormat=
+    ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=0, 
+    waitMinutes=0)
+mdb.jobs['quad10'].submit(consistencyChecking=OFF)
+mdb.jobs['quad10']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad10.odb', 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 1460, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad10', 'memory': 24.0})
+mdb.jobs['quad10']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad10', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['quad10']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(JOB_COMPLETED, {'time': 'Wed Oct 23 12:24:22 2024', 
+    'jobName': 'quad10'})
+del mdb.models['Model-1'].rootAssembly.features['osso-1']
+del mdb.models['Model-1'].rootAssembly.features['osso-2']
+del mdb.models['Model-1'].rootAssembly.features['osso-3']
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=0.1)
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+#*mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+#*    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+#* Command Interrupted
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=1.0)
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=5.0)
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=20.0)
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=10.0)
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.PartitionEdgeByParam(edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#20 ]', ), ), parameter=0.808929244197048)
+mdb.models['Model-1'].rootAssembly.PartitionEdgeByParam(edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ), parameter=0.642808960919383)
+mdb.models['Model-1'].rootAssembly.PartitionEdgeByParam(edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ), parameter=0.550094375568163)
+mdb.models['Model-1'].rootAssembly.PartitionEdgeByParam(edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#20 ]', ), ), parameter=0.440040325864176)
+mdb.models['Model-1'].rootAssembly.Set(name='test-points', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].vertices.getSequenceFromMask(
+    ('[#24c ]', ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.jobs['quad10'].submit(consistencyChecking=OFF)
+mdb.jobs['quad10']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad10.odb', 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 2796, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad10', 'memory': 24.0})
+mdb.jobs['quad10']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad10', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['quad10']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(JOB_COMPLETED, {'time': 'Wed Oct 23 12:46:28 2024', 
+    'jobName': 'quad10'})
+mdb.models['Model-1'].rootAssembly.ReferencePoint(point=(7.31, 18.37, 0.0))
+mdb.models['Model-1'].rootAssembly.Set(name='m_Set-7', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.referencePoints[37], ))
+mdb.models['Model-1'].rootAssembly.Surface(name='s_Surf-3', side1Edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#80 ]', ), ))
+mdb.models['Model-1'].Coupling(controlPoint=
+    mdb.models['Model-1'].rootAssembly.sets['m_Set-7'], couplingType=
+    DISTRIBUTING, influenceRadius=WHOLE_SURFACE, localCsys=None, name=
+    'Constraint-3', surface=
+    mdb.models['Model-1'].rootAssembly.surfaces['s_Surf-3'], u1=ON, u2=ON, ur3=
+    ON, weightingMethod=UNIFORM)
+mdb.models['Model-1'].rootAssembly.Set(name='m_Set-8', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.referencePoints[37], ))
+mdb.models['Model-1'].rootAssembly.Surface(name='s_Surf-4', side1Edges=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].edges.getSequenceFromMask(
+    ('[#10 ]', ), ))
+mdb.models['Model-1'].Coupling(controlPoint=
+    mdb.models['Model-1'].rootAssembly.sets['m_Set-8'], couplingType=
+    DISTRIBUTING, influenceRadius=WHOLE_SURFACE, localCsys=None, name=
+    'Constraint-4', surface=
+    mdb.models['Model-1'].rootAssembly.surfaces['s_Surf-4'], u1=ON, u2=ON, ur3=
+    ON, weightingMethod=UNIFORM)
+mdb.jobs['quad10'].submit(consistencyChecking=OFF)
+mdb.jobs['quad10']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad10.odb', 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 1468, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad10', 'memory': 24.0})
+mdb.jobs['quad10']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad10', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['quad10']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad10'})
+mdb.jobs['quad10']._Message(JOB_COMPLETED, {'time': 'Wed Oct 23 12:57:17 2024', 
+    'jobName': 'quad10'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    distortionControl=DEFAULT)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quadlin-10', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quadlin-10'].submit(consistencyChecking=OFF)
+mdb.jobs['quadlin-10']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quadlin-10'})
+del mdb.jobs['quad10']
+mdb.jobs['quadlin-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quadlin-10.odb', 'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 6652, 'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quadlin-10', 'memory': 24.0})
+mdb.jobs['quadlin-10']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quadlin-10', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quadlin-10']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quadlin-10'})
+mdb.jobs['quadlin-10']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 13:18:30 2024', 'jobName': 'quadlin-10'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quadquad-10', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quadquad-10'].submit(consistencyChecking=OFF)
+mdb.jobs['quadquad-10']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quadquad-10.odb', 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 1584, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quadquad-10', 'memory': 24.0})
+mdb.jobs['quadquad-10']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quadquad-10', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quadquad-10']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 13:21:09 2024', 'jobName': 'quadquad-10'})
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+# Save by ltiaulas2019 on 2024_10_23-13.29.54; build 2022 2021_09_15-18.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(imageName=
+    'imagem-osso-2', showImage=True)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(imageName=
+    'osso-protese')
+# Save by ltiaulas2019 on 2024_10_23-15.00.23; build 2022 2021_09_15-18.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    68.75, -85.0), point1=(-72.5, -17.5))
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.jobs['quadquad-10'].submit(consistencyChecking=OFF)
+mdb.jobs['quadquad-10']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quadquad-10.odb', 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 4536, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quadquad-10', 'memory': 24.0})
+mdb.jobs['quadquad-10']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quadquad-10', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quadquad-10']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quadquad-10'})
+mdb.jobs['quadquad-10']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 15:33:30 2024', 'jobName': 'quadquad-10'})
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(imageName=
+    'imagem-osso-2', showImage=True)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(imageName=
+    'protese-grid-overlay')
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=0.7
+    , yScale=0.7)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=0.5
+    , yScale=0.5)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(origin=(
+    0.0, -50.0))
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=0.4
+    , yScale=0.4)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=0.3
+    , yScale=0.3)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.35, yScale=0.35)
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(imageName=
+    'protese-grid-overlay', showImage=True)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.35, yScale=0.35)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=0.3
+    , yScale=0.3)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.32, yScale=0.32)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.31, yScale=0.31)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.32, yScale=0.32)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.33, yScale=0.33)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.35, yScale=0.35)
+mdb.models['Model-1'].sketches['__profile__'].imageOptions.setValues(xScale=
+    0.355, yScale=0.355)
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=TRI, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-lin-10', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['tri-lin-10'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-lin-10']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-lin-10.odb', 'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 11200, 'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-lin-10', 'memory': 24.0})
+mdb.jobs['tri-lin-10']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-lin-10', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-lin-10']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-10'})
+mdb.jobs['tri-lin-10']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 15:43:48 2024', 'jobName': 'tri-lin-10'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-quad-10', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['tri-quad-10'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-quad-10']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-quad-10.odb', 'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 6444, 'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-quad-10', 'memory': 24.0})
+mdb.jobs['tri-quad-10']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-quad-10', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-quad-10']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-10'})
+mdb.jobs['tri-quad-10']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 15:46:21 2024', 'jobName': 'tri-quad-10'})
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=5.0)
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad-lin-5', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quad-lin-5'].submit(consistencyChecking=OFF)
+mdb.jobs['quad-lin-5']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad-lin-5.odb', 'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 10008, 'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad-lin-5', 'memory': 24.0})
+mdb.jobs['quad-lin-5']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad-lin-5', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quad-lin-5']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-lin-5'})
+mdb.jobs['quad-lin-5']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 15:49:03 2024', 'jobName': 'quad-lin-5'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad-quad-5', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quad-quad-5'].submit(consistencyChecking=OFF)
+mdb.jobs['quad-quad-5']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad-quad-5.odb', 'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 6568, 'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad-quad-5', 'memory': 25.0})
+mdb.jobs['quad-quad-5']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad-quad-5', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quad-quad-5']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-quad-5'})
+mdb.jobs['quad-quad-5']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 15:52:40 2024', 'jobName': 'quad-quad-5'})
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=TRI, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-lin-5', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, resultsFormat=
+    ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=0, 
+    waitMinutes=0)
+mdb.jobs['tri-lin-5'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-lin-5']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-lin-5.odb', 'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 1104, 'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-lin-5', 'memory': 24.0})
+mdb.jobs['tri-lin-5']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-lin-5', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-lin-5']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-5'})
+mdb.jobs['tri-lin-5']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 15:55:41 2024', 'jobName': 'tri-lin-5'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-quad-5', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['tri-quad-5'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-quad-5']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-quad-5.odb', 'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 3916, 'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-quad-5', 'memory': 25.0})
+mdb.jobs['tri-quad-5']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-quad-5', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-quad-5']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-5'})
+mdb.jobs['tri-quad-5']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 15:58:29 2024', 'jobName': 'tri-quad-5'})
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=3.0)
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad-lin-3', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quad-lin-3'].submit(consistencyChecking=OFF)
+mdb.jobs['quad-lin-3']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad-lin-3.odb', 'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 4260, 'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad-lin-3', 'memory': 25.0})
+mdb.jobs['quad-lin-3']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad-lin-3', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quad-lin-3']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-lin-3'})
+mdb.jobs['quad-lin-3']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:01:02 2024', 'jobName': 'quad-lin-3'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad-quad-3', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quad-quad-3'].submit(consistencyChecking=OFF)
+mdb.jobs['quad-quad-3']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad-quad-3.odb', 'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 8520, 'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad-quad-3', 'memory': 27.0})
+mdb.jobs['quad-quad-3']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad-quad-3', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quad-quad-3']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-quad-3'})
+mdb.jobs['quad-quad-3']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:03:41 2024', 'jobName': 'quad-quad-3'})
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=TRI, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-lin-3', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, resultsFormat=
+    ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=0, 
+    waitMinutes=0)
+mdb.jobs['tri-lin-3'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-lin-3']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-lin-3.odb', 'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 8520, 'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-lin-3', 'memory': 25.0})
+mdb.jobs['tri-lin-3']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-lin-3', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-lin-3']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-3'})
+mdb.jobs['tri-lin-3']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:08:14 2024', 'jobName': 'tri-lin-3'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-quad-3', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['tri-quad-3'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-quad-3']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-quad-3.odb', 'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 10364, 'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-quad-3', 'memory': 28.0})
+mdb.jobs['tri-quad-3']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(MINIMUM_MEMORY, {'minimum_memory': 18.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-quad-3', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-quad-3']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-3'})
+mdb.jobs['tri-quad-3']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:11:07 2024', 'jobName': 'tri-quad-3'})
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=2.0)
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad-lin-2', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quad-lin-2'].submit(consistencyChecking=OFF)
+mdb.jobs['quad-lin-2']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad-lin-2.odb', 'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 10500, 'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad-lin-2', 'memory': 26.0})
+mdb.jobs['quad-lin-2']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad-lin-2', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quad-lin-2']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-lin-2'})
+mdb.jobs['quad-lin-2']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:14:09 2024', 'jobName': 'quad-lin-2'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad-quad-2', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quad-quad-2'].submit(consistencyChecking=OFF)
+mdb.jobs['quad-quad-2']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad-quad-2.odb', 'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 4880, 'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad-quad-2', 'memory': 32.0})
+mdb.jobs['quad-quad-2']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(MINIMUM_MEMORY, {'minimum_memory': 19.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad-quad-2', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quad-quad-2']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-quad-2'})
+mdb.jobs['quad-quad-2']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:18:32 2024', 'jobName': 'quad-quad-2'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=TRI, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-lin-2', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, resultsFormat=
+    ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=0, 
+    waitMinutes=0)
+mdb.jobs['tri-lin-2'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-lin-2']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-lin-2.odb', 'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 1540, 'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-lin-2', 'memory': 25.0})
+mdb.jobs['tri-lin-2']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-lin-2', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-lin-2']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-2'})
+mdb.jobs['tri-lin-2']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:22:10 2024', 'jobName': 'tri-lin-2'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-quad-2', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['tri-quad-2'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-quad-2']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-quad-2.odb', 'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 7356, 'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-quad-2', 'memory': 32.0})
+mdb.jobs['tri-quad-2']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(MINIMUM_MEMORY, {'minimum_memory': 19.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-quad-2', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-quad-2']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-2'})
+mdb.jobs['tri-quad-2']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:25:13 2024', 'jobName': 'tri-quad-2'})
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=1.0)
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad-lin-1', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quad-lin-1'].submit(consistencyChecking=OFF)
+mdb.jobs['quad-lin-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad-lin-1.odb', 'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 6460, 'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad-lin-1', 'memory': 34.0})
+mdb.jobs['quad-lin-1']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(MINIMUM_MEMORY, {'minimum_memory': 20.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad-lin-1', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quad-lin-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-lin-1'})
+mdb.jobs['quad-lin-1']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:29:26 2024', 'jobName': 'quad-lin-1'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad-quad-1', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quad-quad-1'].submit(consistencyChecking=OFF)
+mdb.jobs['quad-quad-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad-quad-1.odb', 'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 10912, 'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad-quad-1', 'memory': 65.0})
+mdb.jobs['quad-quad-1']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(MINIMUM_MEMORY, {'minimum_memory': 26.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad-quad-1', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quad-quad-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-quad-1'})
+mdb.jobs['quad-quad-1']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:31:19 2024', 'jobName': 'quad-quad-1'})
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=TRI, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-lin-1', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, resultsFormat=
+    ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=0, 
+    waitMinutes=0)
+mdb.jobs['tri-lin-1'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-lin-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-lin-1.odb', 'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 11204, 'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-lin-1', 'memory': 35.0})
+mdb.jobs['tri-lin-1']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(MINIMUM_MEMORY, {'minimum_memory': 23.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-lin-1', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-lin-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-1'})
+mdb.jobs['tri-lin-1']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:34:30 2024', 'jobName': 'tri-lin-1'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-quad-1', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['tri-quad-1'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-quad-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-quad-1.odb', 'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 3796, 'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-quad-1', 'memory': 68.0})
+mdb.jobs['tri-quad-1']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(MINIMUM_MEMORY, {'minimum_memory': 29.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-quad-1', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-quad-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-1'})
+mdb.jobs['tri-quad-1']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:37:07 2024', 'jobName': 'tri-quad-1'})
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=0.5)
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad-lin-05', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quad-lin-05'].submit(consistencyChecking=OFF)
+mdb.jobs['quad-lin-05']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad-lin-05.odb', 'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 10400, 'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad-lin-05', 'memory': 73.0})
+mdb.jobs['quad-lin-05']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(MINIMUM_MEMORY, {'minimum_memory': 30.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad-lin-05', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quad-lin-05']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-lin-05'})
+mdb.jobs['quad-lin-05']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:41:15 2024', 'jobName': 'quad-lin-05'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad-quad-05', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quad-quad-05'].submit(consistencyChecking=OFF)
+mdb.jobs['quad-quad-05']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad-quad-05.odb', 'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 3044, 'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad-quad-05', 'memory': 208.0})
+mdb.jobs['quad-quad-05']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(MINIMUM_MEMORY, {'minimum_memory': 60.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad-quad-05', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quad-quad-05']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-quad-05'})
+mdb.jobs['quad-quad-05']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:44:41 2024', 'jobName': 'quad-quad-05'})
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=TRI, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-lin-05', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['tri-lin-05'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-lin-05']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-lin-05.odb', 'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 10940, 'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-lin-05', 'memory': 76.0})
+mdb.jobs['tri-lin-05']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(MINIMUM_MEMORY, {'minimum_memory': 31.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-lin-05', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-lin-05']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-05'})
+mdb.jobs['tri-lin-05']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:47:51 2024', 'jobName': 'tri-lin-05'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-quad-05', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['tri-quad-05'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-quad-05']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-quad-05.odb', 'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 10908, 'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-quad-05', 'memory': 217.0})
+mdb.jobs['tri-quad-05']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(MINIMUM_MEMORY, {'minimum_memory': 71.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-quad-05', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-quad-05']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-05'})
+mdb.jobs['tri-quad-05']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:50:01 2024', 'jobName': 'tri-quad-05'})
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=0.25)
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad-lin-025', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quad-lin-025'].submit(consistencyChecking=OFF)
+mdb.jobs['quad-lin-025']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad-lin-025.odb', 'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 10348, 'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad-lin-025', 'memory': 248.0})
+mdb.jobs['quad-lin-025']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(MINIMUM_MEMORY, {'minimum_memory': 82.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad-lin-025', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quad-lin-025']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-lin-025'})
+mdb.jobs['quad-lin-025']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:53:07 2024', 'jobName': 'quad-lin-025'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='quad-quad-025', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['quad-quad-025'].submit(consistencyChecking=OFF)
+mdb.jobs['quad-quad-025']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': '1 elements are distorted. Either the isoparametric angles are out of the suggested limits or the triangular or tetrahedral quality measure is bad. The elements have been identified in element set WarnElemDistorted.', 
+    'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\quad-quad-025.odb', 'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 10908, 'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'quad-quad-025', 'memory': 842.0})
+mdb.jobs['quad-quad-025']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(MINIMUM_MEMORY, {'minimum_memory': 225.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'quad-quad-025', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['quad-quad-025']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'quad-quad-025'})
+mdb.jobs['quad-quad-025']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 16:55:56 2024', 'jobName': 'quad-quad-025'})
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=TRI, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-lin-025', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['tri-lin-025'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-lin-025']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-lin-025.odb', 'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 3916, 'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-lin-025', 'memory': 245.0})
+mdb.jobs['tri-lin-025']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(MINIMUM_MEMORY, {'minimum_memory': 82.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-lin-025', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-lin-025']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-lin-025'})
+mdb.jobs['tri-lin-025']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 17:09:12 2024', 'jobName': 'tri-lin-025'})
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tri-quad-025', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['tri-quad-025'].submit(consistencyChecking=OFF)
+mdb.jobs['tri-quad-025']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 0, 'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'A 2D DISTRIBUTED COUPLING DEFINITION WITH ROTATIONAL COUPLING=STRUCTURAL WILL IGNORE THE STRUCTURAL ROTATIONAL COUPLING AS ALL OF NODES IN THE CLOUD DO NOT HAVE THE ROTATIONAL DEGREE OF FREEDOM 6 ACTIVE.', 
+    'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\tri-quad-025.odb', 'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'MORGAN', 'handle': 10348, 'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'tri-quad-025', 'memory': 860.0})
+mdb.jobs['tri-quad-025']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 15764.0, 'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(MINIMUM_MEMORY, {'minimum_memory': 263.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'tri-quad-025', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['tri-quad-025']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'tri-quad-025'})
+mdb.jobs['tri-quad-025']._Message(JOB_COMPLETED, {
+    'time': 'Wed Oct 23 17:11:54 2024', 'jobName': 'tri-quad-025'})
+mdb.models['Model-1'].rootAssembly.deleteMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ), size=0.1)
+mdb.models['Model-1'].rootAssembly.setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['osso-4'], ))
+# Save by ltiaulas2019 on 2024_10_23-17.18.03; build 2022 2021_09_15-18.57.30 176069
