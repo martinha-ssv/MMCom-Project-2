@@ -1,0 +1,28 @@
+********************************************************************************
+Probe Values Report, written on Fri Oct 25 19:47:59 2024
+
+Source
+-------
+
+   ODB: C:/temp/DIV-NOIMP.odb
+   Step: step-1
+   Frame: Increment      1: Step Time =    1.000
+   Variable: S, Mises (Avg: 75)
+
+Probe values reported at nodes
+
+  Part Instance     Node ID                     Orig. Coords                                       Def. Coords                   
+                                    X                Y                Z                X                Y                Z       
+-------------------------------------------------------------------------------------------------------------------------------
+      OSSO-4        3964          8.37176         -25.5514               0.          8.37281         -25.5516               0.
+      OSSO-4        5649          3.60731          17.1475               0.          3.61414           17.145               0.
+
+
+  Part Instance     Node ID  Attached elements         S, Mises
+----------------------------------------------------------------
+      OSSO-4        3964              869      520.434E-03
+      OSSO-4        3964              878      520.434E-03
+      OSSO-4        5649             1764      295.397E-03
+      OSSO-4        5649             1825      295.397E-03
+
+

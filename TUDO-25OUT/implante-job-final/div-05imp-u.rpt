@@ -1,0 +1,34 @@
+********************************************************************************
+Probe Values Report, written on Fri Oct 25 19:12:27 2024
+
+Source
+-------
+
+   ODB: C:/temp/DIV-05imp.odb
+   Step: Step-1
+   Frame: Increment      1: Step Time =    1.000
+   Variable: U, Magnitude
+
+Probe values reported at nodes
+
+  Part Instance     Node ID                     Orig. Coords                                       Def. Coords                   
+                                    X                Y                Z                X                Y                Z       
+-------------------------------------------------------------------------------------------------------------------------------
+  CABEÇA-IMPLANTE-1        1404         -2.72777          30.9948               0.         -2.71158          30.9954               0.
+  HASTE-IMPLANTE-COPY05-1         261          7.07528          18.2092               0.          7.08854          18.2077               0.
+    PART-2-1        2328           9.6149         -28.2551               0.          9.61604         -28.2553               0.
+    PART-2-1        3317          8.21053         -9.43665               0.          8.21618         -9.43709               0.
+
+
+  Part Instance     Node ID  Attached elements     U, Magnitude
+----------------------------------------------------------------
+  CABEÇA-IMPLANTE-1        1404              419      16.1954E-03
+  CABEÇA-IMPLANTE-1        1404              431      16.1954E-03
+  HASTE-IMPLANTE-COPY05-1         261               46      13.3466E-03
+  HASTE-IMPLANTE-COPY05-1         261               88      13.3466E-03
+    PART-2-1        2328              269      1.15764E-03
+    PART-2-1        2328              716      1.15764E-03
+    PART-2-1        3317              893      5.66874E-03
+    PART-2-1        3317              897      5.66874E-03
+
+

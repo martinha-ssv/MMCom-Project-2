@@ -1,0 +1,37 @@
+********************************************************************************
+Probe Values Report, written on Fri Oct 25 19:28:12 2024
+
+Source
+-------
+
+   ODB: C:/temp/DIV-075imp.odb
+   Step: Step-1
+   Frame: Increment      1: Step Time =    1.000
+   Variable: U, Magnitude
+
+Probe values reported at nodes
+
+  Part Instance     Node ID                     Orig. Coords                                       Def. Coords                   
+                                    X                Y                Z                X                Y                Z       
+-------------------------------------------------------------------------------------------------------------------------------
+  CABEÇA-IMPLANTE-1        1439         -3.42434          29.3173               0.         -3.41042          29.3182               0.
+  HASTE-IMPLANTE-COPY-1         593          9.92044          15.8294               0.          9.93183          15.8279               0.
+    PART-3-1        1206          7.72122         -8.90644               0.          7.72696         -8.90689               0.
+    PART-3-1        2074          9.87902          -30.571               0.          9.87988         -30.5712               0.
+
+
+  Part Instance     Node ID  Attached elements     U, Magnitude
+----------------------------------------------------------------
+  CABEÇA-IMPLANTE-1        1439              426      13.9543E-03
+  CABEÇA-IMPLANTE-1        1439              437      13.9543E-03
+  HASTE-IMPLANTE-COPY-1         593              146      11.4892E-03
+  HASTE-IMPLANTE-COPY-1         593              180      11.4892E-03
+    PART-3-1        1206             1107      5.75102E-03
+    PART-3-1        1206             1130      5.75102E-03
+    PART-3-1        1206             1131      5.75102E-03
+    PART-3-1        1206             1146      5.75102E-03
+    PART-3-1        1206             1150      5.75102E-03
+    PART-3-1        2074              327      874.132E-06
+    PART-3-1        2074              956      874.132E-06
+
+

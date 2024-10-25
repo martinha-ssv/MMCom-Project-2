@@ -1,0 +1,31 @@
+********************************************************************************
+Probe Values Report, written on Fri Oct 25 13:04:19 2024
+
+Source
+-------
+
+   ODB: C:/temp/osso-imp-cocr.odb
+   Step: Step-1
+   Frame: Increment      1: Step Time =    1.000
+   Variable: U, Magnitude
+
+Probe values reported at nodes
+
+  Part Instance     Node ID                     Orig. Coords                                       Def. Coords                   
+                                    X                Y                Z                X                Y                Z       
+-------------------------------------------------------------------------------------------------------------------------------
+  IMPLANTE-2-COPY4-1        1300          10.1536          14.2653               0.          10.1792          14.2609               0.
+  IMPLANTE-2-COPY4-1        2210         -3.43434          31.8012               0.         -3.40391          31.8004               0.
+  OSSO-DIVIDED-CUT-1        1875           9.8876         -26.9024               0.          9.89404         -26.9037               0.
+
+
+  Part Instance     Node ID  Attached elements     U, Magnitude
+----------------------------------------------------------------
+  IMPLANTE-2-COPY4-1        1300              221       25.958E-03
+  IMPLANTE-2-COPY4-1        1300              242       25.958E-03
+  IMPLANTE-2-COPY4-1        2210              665      30.4402E-03
+  IMPLANTE-2-COPY4-1        2210              678      30.4402E-03
+  OSSO-DIVIDED-CUT-1        1875              183       6.5599E-03
+  OSSO-DIVIDED-CUT-1        1875              754       6.5599E-03
+
+

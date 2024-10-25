@@ -1,0 +1,36 @@
+********************************************************************************
+Probe Values Report, written on Fri Oct 25 18:20:42 2024
+
+Source
+-------
+
+   ODB: C:/temp/BLAH-tit.odb
+   Step: Step-1
+   Frame: Increment      1: Step Time =    1.000
+   Variable: S, Mises (Avg: 75)
+
+Probe values reported at nodes
+
+  Part Instance     Node ID                     Orig. Coords                                       Def. Coords                   
+                                    X                Y                Z                X                Y                Z       
+-------------------------------------------------------------------------------------------------------------------------------
+  IMP-OSSO-1        2958           9.4576         -28.4698               0.          9.45859         -28.4699               0.
+  IMP-OSSO-1        3214          9.27185         -10.2634               0.          9.27634          -10.264               0.
+  IMPLANTE-2-COPY4-1         339          10.9585          12.2491               0.           10.967          12.2475               0.
+  IMPLANTE-2-COPY4-1        2129         -6.37266           32.151               0.         -6.36176          32.1513               0.
+
+
+  Part Instance     Node ID  Attached elements         S, Mises
+----------------------------------------------------------------
+  IMP-OSSO-1        2958              764      553.495E-03
+  IMP-OSSO-1        2958              823      553.495E-03
+  IMP-OSSO-1        3214              929       249.99E-03
+  IMP-OSSO-1        3214              964       249.99E-03
+  IMPLANTE-2-COPY4-1         339              219      475.544E-03
+  IMPLANTE-2-COPY4-1         339              222      475.544E-03
+  IMPLANTE-2-COPY4-1         339              223      475.544E-03
+  IMPLANTE-2-COPY4-1         339              247      475.544E-03
+  IMPLANTE-2-COPY4-1        2129              625      479.325E-03
+  IMPLANTE-2-COPY4-1        2129              692      479.325E-03
+
+

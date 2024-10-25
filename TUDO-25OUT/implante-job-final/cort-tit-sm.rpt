@@ -1,0 +1,31 @@
+********************************************************************************
+Probe Values Report, written on Fri Oct 25 18:46:48 2024
+
+Source
+-------
+
+   ODB: C:/temp/CORT-tit.odb
+   Step: Step-1
+   Frame: Increment      1: Step Time =    1.000
+   Variable: S, Mises (Avg: 75)
+
+Probe values reported at nodes
+
+  Part Instance     Node ID                     Orig. Coords                                       Def. Coords                   
+                                    X                Y                Z                X                Y                Z       
+-------------------------------------------------------------------------------------------------------------------------------
+  IMPLANTE-2-COPY4-1        1345          9.88829          15.2556               0.          9.89512          15.2549               0.
+  IMPLANTE-2-COPY4-1        2247         -7.34986          33.7911               0.         -7.34083          33.7923               0.
+  OSSO-CUT-1        2418          9.78563         -22.8263               0.          9.78729         -22.8266               0.
+
+
+  Part Instance     Node ID  Attached elements         S, Mises
+----------------------------------------------------------------
+  IMPLANTE-2-COPY4-1        1345              242      425.525E-03
+  IMPLANTE-2-COPY4-1        1345              257      425.525E-03
+  IMPLANTE-2-COPY4-1        2247              676       497.53E-03
+  IMPLANTE-2-COPY4-1        2247              719       497.53E-03
+  OSSO-CUT-1        2418              340      531.177E-03
+  OSSO-CUT-1        2418             1040      531.177E-03
+
+

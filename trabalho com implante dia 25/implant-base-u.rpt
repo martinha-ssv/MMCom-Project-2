@@ -1,0 +1,31 @@
+********************************************************************************
+Probe Values Report, written on Fri Oct 25 11:37:18 2024
+
+Source
+-------
+
+   ODB: C:/temp/job-implant-base.odb
+   Step: Step-1
+   Frame: Increment      1: Step Time =    1.000
+   Variable: U, Magnitude
+
+Probe values reported at nodes
+
+  Part Instance     Node ID            Orig. Coords                     Def. Coords          
+                                 X          Y          Z          X          Y          Z    
+-------------------------------------------------------------------------------------------
+  IMPLANTE-2-COPY4-1        1286        10.        14.        0.0        10.        14.        0.0
+  IMPLANTE-2-COPY4-1        2197        -5.        33.        0.0        -5.        33.        0.0
+  OSSO-CUT-1        3552         9.       -20.        0.0         9.       -20.        0.0
+
+
+  Part Instance     Node ID  Attached elements  U, Magnitude
+-------------------------------------------------------------
+  IMPLANTE-2-COPY4-1        1286        222     3.E-03
+  IMPLANTE-2-COPY4-1        1286        242     3.E-03
+  IMPLANTE-2-COPY4-1        2197        667     4.E-03
+  IMPLANTE-2-COPY4-1        2197        688     4.E-03
+  OSSO-CUT-1        3552       1053     1.E-03
+  OSSO-CUT-1        3552       1058     1.E-03
+
+

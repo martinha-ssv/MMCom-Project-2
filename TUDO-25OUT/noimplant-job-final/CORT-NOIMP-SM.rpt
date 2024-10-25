@@ -1,0 +1,28 @@
+********************************************************************************
+Probe Values Report, written on Fri Oct 25 19:35:14 2024
+
+Source
+-------
+
+   ODB: C:/temp/CORT-NO-IMP.odb
+   Step: step-1
+   Frame: Increment      1: Step Time =    1.000
+   Variable: U, Magnitude
+
+Probe values reported at nodes
+
+  Part Instance     Node ID                   Orig. Coords                                     Def. Coords                 
+                                    X               Y               Z               X               Y               Z      
+-------------------------------------------------------------------------------------------------------------------------
+      OSSO-4        3013         10.0171        -28.5123              0.         10.0179        -28.5125              0.
+      OSSO-4        5484         6.91857         13.0867              0.         6.92271          13.086              0.
+
+
+  Part Instance     Node ID  Attached elements    U, Magnitude
+---------------------------------------------------------------
+      OSSO-4        3013             317     836.105E-06
+      OSSO-4        3013            1238     836.105E-06
+      OSSO-4        5484            1680     4.19947E-03
+      OSSO-4        5484            1774     4.19947E-03
+
+

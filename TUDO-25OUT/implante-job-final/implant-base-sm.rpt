@@ -1,0 +1,62 @@
+********************************************************************************
+Probe Values Report, written on Fri Oct 25 11:36:44 2024
+
+Source
+-------
+
+   ODB: C:/temp/job-implant-base.odb
+   Step: Step-1
+   Frame: Increment      1: Step Time =    1.000
+   Variable: S, Mises (Avg: 75)
+
+Probe values reported at nodes
+
+  Part Instance     Node ID            Orig. Coords                     Def. Coords          
+                                 X          Y          Z          X          Y          Z    
+-------------------------------------------------------------------------------------------
+  IMPLANTE-2-COPY4-1        1286        10.        14.        0.0        10.        14.        0.0
+  IMPLANTE-2-COPY4-1        2197        -5.        33.        0.0        -5.        33.        0.0
+  OSSO-CUT-1        3552         9.       -20.        0.0         9.       -20.        0.0
+
+
+  Part Instance     Node ID  Attached elements   S, Mises
+----------------------------------------------------------
+  IMPLANTE-2-COPY4-1        1286        222   644.E-03
+  IMPLANTE-2-COPY4-1        1286        242   644.E-03
+  IMPLANTE-2-COPY4-1        2197        667         2.
+  IMPLANTE-2-COPY4-1        2197        688         2.
+  OSSO-CUT-1        3552       1053   494.E-03
+  OSSO-CUT-1        3552       1058   494.E-03
+
+
+********************************************************************************
+Probe Values Report, written on Fri Oct 25 11:37:01 2024
+
+Source
+-------
+
+   ODB: C:/temp/job-implant-base.odb
+   Step: Step-1
+   Frame: Increment      1: Step Time =    1.000
+   Variable: S, S11 (Avg: 75)
+
+Probe values reported at nodes
+
+  Part Instance     Node ID            Orig. Coords                     Def. Coords          
+                                 X          Y          Z          X          Y          Z    
+-------------------------------------------------------------------------------------------
+  IMPLANTE-2-COPY4-1        1286        10.        14.        0.0        10.        14.        0.0
+  IMPLANTE-2-COPY4-1        2197        -5.        33.        0.0        -5.        33.        0.0
+  OSSO-CUT-1        3552         9.       -20.        0.0         9.       -20.        0.0
+
+
+  Part Instance     Node ID  Attached elements     S, S11
+----------------------------------------------------------
+  IMPLANTE-2-COPY4-1        1286        222    32.E-03
+  IMPLANTE-2-COPY4-1        1286        242    32.E-03
+  IMPLANTE-2-COPY4-1        2197        667    62.E-03
+  IMPLANTE-2-COPY4-1        2197        688    62.E-03
+  OSSO-CUT-1        3552       1053    -1.E-03
+  OSSO-CUT-1        3552       1058    -1.E-03
+
+

@@ -1,0 +1,34 @@
+********************************************************************************
+Probe Values Report, written on Fri Oct 25 15:52:29 2024
+
+Source
+-------
+
+   ODB: C:/temp/bone-base.odb
+   Step: Step-1
+   Frame: Increment      1: Step Time =    1.000
+   Variable: U, Magnitude
+
+Probe values reported at nodes
+
+  Part Instance     Node ID                     Orig. Coords                                       Def. Coords                   
+                                    X                Y                Z                X                Y                Z       
+-------------------------------------------------------------------------------------------------------------------------------
+  BONE-BASE-1         888          10.1994         -25.0212               0.          10.2008         -25.0215               0.
+  IMPLANTE-2-COPY4-1        1348          9.83724          16.9928               0.          9.84405          16.9921               0.
+  IMPLANTE-2-COPY4-1        2345         -5.26957          33.5223               0.         -5.26089          33.5232               0.
+
+
+  Part Instance     Node ID  Attached elements     U, Magnitude
+----------------------------------------------------------------
+  BONE-BASE-1         888              379      1.39913E-03
+  BONE-BASE-1         888              904      1.39913E-03
+  BONE-BASE-1         888              921      1.39913E-03
+  BONE-BASE-1         888              936      1.39913E-03
+  BONE-BASE-1         888             1094      1.39913E-03
+  IMPLANTE-2-COPY4-1        1348              225      6.85356E-03
+  IMPLANTE-2-COPY4-1        1348              246      6.85356E-03
+  IMPLANTE-2-COPY4-1        2345              706      8.72604E-03
+  IMPLANTE-2-COPY4-1        2345              741      8.72604E-03
+
+

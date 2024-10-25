@@ -1,0 +1,31 @@
+********************************************************************************
+Probe Values Report, written on Fri Oct 25 18:42:55 2024
+
+Source
+-------
+
+   ODB: C:/temp/CORT-CoCr.odb
+   Step: Step-1
+   Frame: Increment      1: Step Time =    1.000
+   Variable: U, Magnitude
+
+Probe values reported at nodes
+
+  Part Instance     Node ID                     Orig. Coords                                       Def. Coords                   
+                                    X                Y                Z                X                Y                Z       
+-------------------------------------------------------------------------------------------------------------------------------
+  IMPLANTE-2-COPY4-1        1345          9.88829          15.2556               0.          9.89508          15.2549               0.
+  IMPLANTE-2-COPY4-1        2247         -7.34986          33.7911               0.         -7.34088          33.7923               0.
+  OSSO-CUT-1        2418          9.78563         -22.8263               0.          9.78729         -22.8266               0.
+
+
+  Part Instance     Node ID  Attached elements     U, Magnitude
+----------------------------------------------------------------
+  IMPLANTE-2-COPY4-1        1345              242      6.82889E-03
+  IMPLANTE-2-COPY4-1        1345              257      6.82889E-03
+  IMPLANTE-2-COPY4-1        2247              676      9.07229E-03
+  IMPLANTE-2-COPY4-1        2247              719      9.07229E-03
+  OSSO-CUT-1        2418              340      1.68763E-03
+  OSSO-CUT-1        2418             1040      1.68763E-03
+
+
